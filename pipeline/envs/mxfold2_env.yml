@@ -1,0 +1,23 @@
+# mxfold2 environment
+# RNA secondary structure prediction
+# Usage: conda env create -f mxfold2_env.yml
+#        pip install /path/to/mxfold2  # Install from local source
+name: mxfold2
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch=1.13.1
+  - pytorch-cuda=11.7
+  - numpy>=1.18,<2.0
+  - tqdm
+  - pybind11
+  - gxx_linux-64
+  - pip
+  - pip:
+    - biopython
+    - pandas
+    - git+https://github.com/keio-bioinformatics/mxfold2.git

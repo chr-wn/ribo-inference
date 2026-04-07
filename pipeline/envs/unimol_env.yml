@@ -1,0 +1,21 @@
+# UniMol environment
+# Molecular representation and embedding
+# Usage: conda env create -f unimol_env.yml
+name: unimol
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch=2.1.0
+  - pytorch-cuda=11.8
+  - numpy>=1.22,<2.0
+  - pandas
+  - scikit-learn
+  - rdkit
+  - pip
+  - pip:
+    - unimol_tools
+    - huggingface_hub
