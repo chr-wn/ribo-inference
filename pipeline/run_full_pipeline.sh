@@ -96,7 +96,7 @@ if [ "$DEV_MODE" = true ]; then
 fi
 mkdir -p "$MODEL_DIR"
 
-python -u "$SCRIPT_DIR/train_inference_model.py" \
+python -u "$SCRIPT_DIR/train_inference.py" \
     --data "$CONSOLIDATED_DIR" \
     --output "$MODEL_DIR" \
     --num-models $NUM_MODELS \

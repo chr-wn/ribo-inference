@@ -51,11 +51,11 @@ echo ""
 # -----------------------------------------------------------------------------
 install_miniconda() {
     if [ -f "$CONDA_BIN" ]; then
-        echo "✅ Miniconda already installed at $CONDA_DIR"
+        echo "Miniconda already installed at $CONDA_DIR"
         return 0
     fi
     
-    echo "📦 Installing Miniconda..."
+    echo "Installing Miniconda..."
     
     # Download Miniconda installer
     MINICONDA_INSTALLER="/tmp/miniconda.sh"
@@ -72,14 +72,14 @@ install_miniconda() {
     source "$CONDA_DIR/bin/activate"
     echo "$CONDA_DIR/bin/activate"
     
-    echo "✅ Miniconda installed at $CONDA_DIR"
+    echo "Miniconda installed at $CONDA_DIR"
 }
 
 # Configure conda (ToS, channels, etc) - Runs every time
 configure_conda() {
     # Accept Terms of Service for main and r channels (Required for Colab/non-interactive)
     # We run this every time to ensure compliance and fix broken installs
-    echo "⚙️  Configuring Conda..."
+    echo "Configuring Conda..."
     
     $CONDA_BIN config --set channel_priority flexible 2>/dev/null || true
     
@@ -91,7 +91,7 @@ configure_conda() {
 # Initialize conda for this shell session
 init_conda() {
     if [ ! -f "$CONDA_BIN" ]; then
-        echo "❌ Conda not found. Run: bash setup_colab.sh"
+        echo "Conda not found. Run: bash setup_colab.sh"
         exit 1
     fi
     eval "$($CONDA_BIN shell.bash hook)"
@@ -116,7 +116,7 @@ pack_env() {
         return 0
     fi
 
-    echo "📦 Caching $env_name environment to Drive..."
+    echo "Caching $env_name environment to Drive..."
     echo "   Source: $env_path"
     echo "   Dest:   $cache_file"
     
@@ -128,9 +128,9 @@ pack_env() {
         else
             tar -czf "$cache_file" -C "$CONDA_DIR/envs" "$env_name"
         fi
-        echo "✅ Cached $env_name successfully"
+        echo "Cached $env_name successfully"
     else
-        echo "⚠️  Could not cache $env_name: Environment directory not found"
+        echo "Could not cache $env_name: Environment directory not found"
     fi
 }
 
@@ -161,10 +161,10 @@ unpack_env() {
             tar -xzf "$cache_file" -C "$CONDA_DIR/envs"
         fi
         
-        echo "✅ Restored $env_name from cache"
+        echo "Restored $env_name from cache"
         return 0
     else
-        echo "ℹ️  No cache found for $env_name"
+        echo "No cache found for $env_name"
         return 1
     fi
 }
@@ -213,7 +213,7 @@ setup_rinalmo() {
     # Cache the new environment
     pack_env "rinalmo"
     
-    echo "✅ RiNALMo environment ready!"
+    echo "RiNALMo environment ready!"
 }
 
 setup_mxfold2() {
@@ -244,7 +244,7 @@ setup_mxfold2() {
     
     pack_env "mxfold2"
     
-    echo "✅ mxfold2 environment ready!"
+    echo "mxfold2 environment ready!"
 }
 
 setup_unimol() {
@@ -275,7 +275,7 @@ setup_unimol() {
     
     pack_env "unimol"
     
-    echo "✅ UniMol environment ready!"
+    echo "UniMol environment ready!"
 }
 
 setup_mmseqs2() {
@@ -306,7 +306,7 @@ setup_mmseqs2() {
     
     pack_env "mmseqs2"
     
-    echo "✅ MMseqs2 environment ready!"
+    echo "MMseqs2 environment ready!"
 }
 
 setup_pipeline() {
@@ -338,7 +338,7 @@ setup_pipeline() {
     
     pack_env "pipeline"
     
-    echo "✅ Pipeline environment ready!"
+    echo "Pipeline environment ready!"
 }
 
 setup_training() {
@@ -369,7 +369,7 @@ setup_training() {
     
     pack_env "training"
     
-    echo "✅ Training environment ready!"
+    echo "Training environment ready!"
 }
 
 # -----------------------------------------------------------------------------
@@ -383,10 +383,10 @@ check_status() {
     
     # Check conda
     if [ -f "$CONDA_BIN" ]; then
-        echo "✅ Miniconda: $CONDA_DIR"
-        echo "   Version: $($CONDA_BIN --version)"
+        echo "Miniconda: $CONDA_DIR"
+        echo "Version: $($CONDA_BIN --version)"
     else
-        echo "❌ Miniconda: NOT INSTALLED"
+        echo "Miniconda: NOT INSTALLED"
         return
     fi
     
@@ -401,9 +401,9 @@ check_status() {
     
     for env in pipeline rinalmo mxfold2 unimol mmseqs2 training; do
         if env_exists "$env"; then
-            echo "  ✅ $env"
+            echo "  $env"
         else
-            echo "  ❌ $env (not created)"
+            echo "  $env (not created)"
         fi
     done
     

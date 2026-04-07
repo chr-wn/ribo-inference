@@ -29,7 +29,7 @@ This directory contains the core scripts for the RNA-Ligand Binding Affinity Pre
   - Calls sub-scripts in `rna/` (RiNALMo, MXFold2, MMseqs2) and `mol/` (UniMol, RDKit).
 - **`consolidate_features.py`**: 
   - Compiles thousands of individual feature files into optimized `.pkl` dictionaries for fast loading during training/inference.
-- **`train_inference_model.py`**: 
+- **`train_inference.py`**: 
   - Trains an ensemble (default 5 models) of RMPred.
 - **`predict_inference.py`**: 
   - Loads models and consolidated data to generate predictions.

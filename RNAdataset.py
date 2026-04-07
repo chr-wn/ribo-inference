@@ -224,9 +224,11 @@ class RMPredDataset(Dataset):
         pssm_filename = self.s.pssm_mapping.get(rna_id, rna_id)
         pssm_path = os.path.join(self.s.pssm_dir, f"{pssm_filename}.npy")
         if not os.path.exists(pssm_path):
-            if self.strict: raise FileNotFoundError(f"PSSM missing {rna_id}")
-            return None
-        p = np.load(pssm_path)
+            if self.strict:
+                raise FileNotFoundError(f"PSSM missing {rna_id}")
+            p = np.zeros((r_llm.shape[0], 5), dtype=np.float32)
+        else:
+            p = np.load(pssm_path)
         if p.ndim != 2: p = p.reshape(p.shape[0], -1)
         r_pssm = torch.from_numpy(p).float()
 

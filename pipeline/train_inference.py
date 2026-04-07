@@ -62,7 +62,8 @@ def train_one_model(
         batch_size=config['batch_size'], 
         shuffle=True, 
         label_key='pkd',
-        num_workers=2
+        num_workers=2,
+        strict=False
     )
     
     batch = next(iter(full_loader))
